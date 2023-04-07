@@ -1,3 +1,5 @@
+/*AUTHOR : VINEETH G*/
+
 package com.hotel.management;
 
 import java.io.*;
@@ -5,7 +7,7 @@ public class Utilities {
 	
 	// SAVES USER DATA TO USER.TXT FILE
 	public void saveData(String data, String fileName) throws IOException{
-		BufferedWriter bw = new BufferedWriter(new FileWriter(fileName));
+		BufferedWriter bw = new BufferedWriter(new FileWriter(fileName,true));
 		bw.write(data);
 		bw.newLine();
 		bw.close();
@@ -145,6 +147,20 @@ public class Utilities {
 	        tempFile.delete();
 	        System.out.println("User not found!");
 	    }
+	}
+	
+	//GET LAST ID FROM THE FILE
+	public int getLastId(String filename) throws IOException{
+		int lastId = 0;
+		BufferedReader br = new BufferedReader(new FileReader(filename));
+		String line;
+        while((line = br.readLine()) != null) {
+            String[] values = line.split(",");
+            lastId = Integer.parseInt(values[0].trim());
+        }
+        br.close();
+        return lastId;
+
 	}
 
 	

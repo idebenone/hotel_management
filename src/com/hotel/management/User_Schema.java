@@ -6,7 +6,7 @@ public class User_Schema {
 	private String f_name, l_name, address , city, state , zip;
 	private int id;
 	private long phone;
-	public static int idGen = 1;
+	public static int idGen;
 	
 	
 	//CONSTRUCTORS
@@ -24,7 +24,6 @@ public class User_Schema {
 		this.state = state;
 		this.zip = zip;
 	}
-	
 	
 	//GETTERS AND SETTERS
 	public String getF_name() {

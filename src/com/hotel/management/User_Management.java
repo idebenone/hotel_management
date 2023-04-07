@@ -11,6 +11,17 @@ public class User_Management {
 	
 	//INVOKE UTILITIES CLASS
 	Utilities util = new Utilities();
+	int lastId = 0;
+	
+	public User_Management(){
+		try {
+			lastId = util.getLastId(userFile);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		User_Schema.idGen = lastId + 1;
+	}
 		
 	//USER CRUD OPERATIONS
 	public void addUser(User_Schema u_s){	
@@ -38,7 +49,7 @@ public class User_Management {
 	}
 	
 	//BOOK A ROOM or check-in
-	public void bookRoom(Object obj, Hotel_Schema h_s){
+	public void bookRoom(Object obj, Room_Schema h_s){
 		try {
 			String[] val = util.getData(obj, userFile).split(",");
 			if(val.length > 1){

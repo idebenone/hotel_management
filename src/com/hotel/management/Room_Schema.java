@@ -1,3 +1,4 @@
+
 /*AUHTOR VINEETH G */
 
 package com.hotel.management;
@@ -5,15 +6,18 @@ package com.hotel.management;
 import java.time.*;
 import java.util.*;
 
-public class Hotel_Schema {	
+public class Room_Schema {	
 	private int roomNum, guestNum, stayDays, price, customerId;
 	private String customerName;
 	private LocalDate checkin, checkout;
 	private boolean is_available = false; //additional
 	private List<String> metadata; //additional
+	public static int roomNumGen;
 	
 	//CONSTRUCTORS
-	public Hotel_Schema(){};
+	public Room_Schema(){
+		roomNum = roomNumGen++;
+	};
 		
 	//GETTERS AND SETTERS
 	public int getRoomNum() {
