@@ -1,35 +1,87 @@
 package com.hotel.management;
 
 import java.time.*;
+import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-		
-		//TESTING METHODS
-		
-		//add user
-		User_Schema u_s  = new User_Schema("Vineeth","G","address","Ilkal","Karnataka","587125");
 		User_Management u_m = new User_Management();
-//		u_m.addUser(u_s);
-		
-		//edit user based on name or id
-		String[] editedValue = new String[]{"Vinith","G","address","Ilkal","Karnataka","587125"};
-//		u_m.editUser("Vineeth G", editedValue);
-		
-		//delete user based on name or id
-//		u_m.deleteUser(1);
-		
-		//book a room
-//		Hotel_Schema h_s = new Hotel_Schema();
-//		h_s.setRoomNum(147);
-//		h_s.setGuestNum(2);
-//		h_s.setStayDays(6);
-//		h_s.setPrice(3000);
-//		h_s.setCheckin(LocalDate.now());
-//		h_s.setCheckout(h_s.getCheckin().plusDays(h_s.getStayDays()));
-//		u_m.bookRoom("Vineeth G", h_s);
+		int choice = 0;
+		do{
+			System.out.println("===================================WELCOME TO BLAH BLAH=====================================");
+			System.out.println();
+			System.out.println();
+			System.out.println("1. ADD CUSTOMER DETAILS");
+			System.out.println("2. EDIT CUSTOMER DETAILS");
+			System.out.println("3. BOOK A ROOM / RESERVATION ");
+			System.out.println("4. CHECKOUT CUSTOMER");
+			System.out.println("5. DELETE CUSTOMER DETAILS");
+			Scanner sc = new Scanner(System.in);
+			choice = sc.nextInt();
+			sc.nextLine();
+			switch(choice){
+				case 1: System.out.println("Please Enter Customer First Name: ");
+						String f_name = sc.nextLine();
+						
+						System.out.println("Please Enter Customer Last Name: ");
+						String l_name = sc.nextLine();
+						
+						System.out.println("Please Enter Customer Phone: ");
+						long phone = sc.nextLong();
+						sc.nextLine();
+						
+						System.out.println("Please Enter Customer Address: ");
+						String address = sc.nextLine();
+						
+						System.out.println("Please Enter Customer City: ");
+						String city = sc.nextLine();
+						
+						System.out.println("Please Enter Customer State: ");
+						String state = sc.nextLine();
+						
+						System.out.println("Please Enter Customer Zip: ");
+						String zip = sc.nextLine();
+						
+						User_Schema u_s = new User_Schema(f_name,l_name,phone,address,city,state,zip);
+						u_m.addUser(u_s);
+						break;
+				
+				case 2: System.out.println("Please enter Customer ID or Customer Full Name to edit: ");
+						Object input;
+					    if (sc.hasNextInt()){
+					        input = sc.nextInt();
+					    } else {
+					        input = sc.nextLine();
+					    }
+						System.out.println();
+						System.out.println();
+						System.out.println("EDITING USER DETAILS NOW: ");
+						System.out.println("Please Enter Customer First Name: ");
+						String ef_name = sc.nextLine();
+						
+						System.out.println("Please Enter Customer Last Name: ");
+						String el_name = sc.nextLine();
+						
+						System.out.println("Please Enter Customer Phone: ");
+						long ephone = sc.nextLong();
+						
+						System.out.println("Please Enter Customer Address: ");
+						String eaddress = sc.nextLine();
+						
+						System.out.println("Please Enter Customer City: ");
+						String ecity = sc.nextLine();
+						
+						System.out.println("Please Enter Customer State: ");
+						String estate = sc.nextLine();
+						
+						System.out.println("Please Enter Customer Zip: ");
+						String ezip = sc.nextLine();
+						
+						String[] newData = {ef_name,el_name,Double.toString(ephone),eaddress,ecity,estate,ezip};
+						u_m.editUser(input, newData);
+			}
+		}while(choice>0);
 
-		u_m.checkOut(1);
 	}
 
 }

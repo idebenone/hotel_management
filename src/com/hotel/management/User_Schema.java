@@ -5,6 +5,7 @@ package com.hotel.management;
 public class User_Schema {
 	private String f_name, l_name, address , city, state , zip;
 	private int id;
+	private long phone;
 	public static int idGen = 1;
 	
 	
@@ -13,10 +14,11 @@ public class User_Schema {
 		id = idGen++;
 	}
 	
-	public User_Schema(String f_name, String l_name, String address, String city, String state, String zip) {
+	public User_Schema(String f_name, String l_name, long phone, String address, String city, String state, String zip) {
 		this();
 		this.f_name = f_name;
 		this.l_name = l_name;
+		this.phone = phone;
 		this.address = address;
 		this.city = city;
 		this.state = state;
@@ -36,6 +38,12 @@ public class User_Schema {
 	}
 	public void setL_name(String l_name) {
 		this.l_name = l_name;
+	}
+	public long getPhone() {
+		return phone;
+	}
+	public void setPhone(long phone) {
+		this.phone = phone;
 	}
 	public String getAddress() {
 		return address;
@@ -70,7 +78,7 @@ public class User_Schema {
 
 	@Override
 	public String toString() {
-		return id + ", " + f_name + ", " + l_name + ", " + address + ", " + city + ", " +  state + ", " + zip;
+		return id + ", " + f_name + ", " + l_name + ", " + phone + ", " + address + ", " + city + ", " +  state + ", " + zip;
 	}
 	
 	
