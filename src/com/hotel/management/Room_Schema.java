@@ -7,11 +7,10 @@ import java.time.*;
 import java.util.*;
 
 public class Room_Schema {	
-	private int roomNum, guestNum, stayDays, price, customerId;
-	private String customerName;
+	private int roomNum,price, customerId;
+	private String customerName, category;
 	private LocalDate checkin, checkout;
-	private boolean is_available = false; //additional
-	private List<String> metadata; //additional
+	private boolean is_available = true;
 	public static int roomNumGen;
 	
 	//CONSTRUCTORS
@@ -25,12 +24,6 @@ public class Room_Schema {
 	}
 	public void setRoomNum(int roomNum) {
 		this.roomNum = roomNum;
-	}
-	public int getGuestNum() {
-		return guestNum;
-	}
-	public void setGuestNum(int guestNum) {
-		this.guestNum = guestNum;
 	}
 	public int getPrice() {
 		return price;
@@ -50,6 +43,12 @@ public class Room_Schema {
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
 	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
 	public LocalDate getCheckin() {
 		return checkin;
 	}
@@ -68,21 +67,13 @@ public class Room_Schema {
 	public void setIs_available(boolean is_available) {
 		this.is_available = is_available;
 	}
-	public List<String> getMetadata() {
-		return metadata;
-	}
-	public void setMetadata(List<String> metadata) {
-		this.metadata = metadata;
-	}
-	public int getStayDays() {
-		return stayDays;
-	}
-	public void setStayDays(int stayDays) {
-		this.stayDays = stayDays;
+	
+	public String addRoom(){
+		return roomNum + ", " + category + ", " + price + ", " + is_available + ", " + customerId + ", " + checkin + ", " + checkout ;
 	}
 
 	@Override
 	public String toString() {
-		return customerId + ", " + customerName + ", " + roomNum + ", " + guestNum + ", " + stayDays + ", " + checkin + ", " + checkout + ", " + price ;
+		return customerId + ", " ;
 	}
 }
