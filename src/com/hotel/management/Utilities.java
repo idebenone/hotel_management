@@ -18,33 +18,68 @@ public class Utilities {
 	
 	
 	//GET SAVED DATA FROM USER.TXT FILE
-	public String getData(Object input,String fileName) throws IOException{
-		BufferedReader br = new BufferedReader(new FileReader(fileName));
-		String line;
-		String res = "";
-		if(input instanceof String){
+//	public String getData(Object input,String fileName) throws IOException{
+//		BufferedReader br = new BufferedReader(new FileReader(fileName));
+//		String line;
+//		String res = "";
+//		if(input instanceof String){
+//	        while ((line = br.readLine()) != null) {
+//	            String parts[] = line.split(",");
+//	            String fullName = parts[1].trim() + " " + parts[2].trim();
+//	            if (fullName.equals(input)) {
+//	            	res = line;
+//	            }else{
+//	            	res = "";
+//	            }
+//	        } 
+//		}else{
+//	        while ((line = br.readLine()) != null) {
+//	            String parts[] = line.split(",");
+//	            if (parts[0].trim().equalsIgnoreCase(Integer.toString((int) input))) {
+//	            	res = line;
+//	            	System.out.println(res);
+//	            }else{
+//	            	res = "";
+//	            }
+//	        } 
+//		}
+//		br.close();
+//		System.out.println(res);
+//		return res;
+//	}
+	
+	public String getData(Object input, String fileName) throws IOException {
+	    BufferedReader br = new BufferedReader(new FileReader(fileName));
+	    String line;
+	    String res = "";
+	    boolean foundMatch = false;
+	    if (input instanceof String) {
 	        while ((line = br.readLine()) != null) {
 	            String parts[] = line.split(",");
 	            String fullName = parts[1].trim() + " " + parts[2].trim();
 	            if (fullName.equals(input)) {
-	            	res = line;
-	            }else{
-	            	res = "";
+	                res = line;
+	                foundMatch = true;
+	                break;
 	            }
-	        } 
-		}else{
+	        }
+	    } else {
 	        while ((line = br.readLine()) != null) {
 	            String parts[] = line.split(",");
 	            if (parts[0].trim().equalsIgnoreCase(Integer.toString((int) input))) {
-	            	res = line;
-	            }else{
-	            	res = "";
+	                res = line;
+	                foundMatch = true;
+	                break;
 	            }
-	        } 
-		}
-		br.close();
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>DATA FOUND!");
-		return res;
+	        }
+	    }
+	    br.close();
+//	    if (!foundMatch) {
+//	        System.out.println("No match found");
+//	    } else {
+//	        System.out.println(res);
+//	    }
+	    return res;
 	}
 	
 	//EDIT DATA FROM USER.TXT FILE
@@ -157,17 +192,7 @@ public class Utilities {
 	}
 	
 	//GET LAST ID FROM THE FILE
-	public int getLastId(String filename){
-//		int lastId = 0;
-//		BufferedReader br = new BufferedReader(new FileReader(filename));
-//		String line;
-//        while((line = br.readLine()) != null) {
-//            String[] values = line.split(",");
-//            lastId = Integer.parseInt(values[0].trim());
-//        }
-//        br.close();
-//        return lastId;
-		
+	public int getLastId(String filename){	
 	    int lastId = 0;
 	    BufferedReader br = null;
 	    try {
@@ -197,7 +222,7 @@ public class Utilities {
 	    String line;
 	    while ((line = br.readLine()) != null) {
             String parts[] = line.split(",");
-            if (parts[2].trim().equalsIgnoreCase(category) && parts[4].trim().equalsIgnoreCase("true")){
+            if (parts[1].trim().equalsIgnoreCase(category) && parts[3].trim().equalsIgnoreCase("true")){
             	System.out.println(line);
             }
         } 
@@ -219,10 +244,10 @@ public class Utilities {
                 parts[i] = parts[i].trim();
             }
             if (Integer.parseInt(parts[0].trim())== roomId){
-            	parts[4] = newData[3];
-                parts[5] = newData[0]; 
-                parts[6] = newData[1];
-                parts[7] = newData[2];
+            	parts[3] = newData[3];
+                parts[4] = newData[0]; 
+                parts[5] = newData[1];
+                parts[6] = newData[2];
                 found = true;
             }
             String newLine = String.join(", ", parts);

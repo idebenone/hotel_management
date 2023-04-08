@@ -17,11 +17,11 @@ public class Main {
 			System.out.println("**********************************|---------------------|************************************");
 			System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 			System.out.println();
-			System.out.println("1. ADD CUSTOMER DETAILS");
-			System.out.println("2. BOOK A ROOM / RESERVATION ");
-			System.out.println("3. CHECKOUT CUSTOMER");
-			System.out.println("4. -------");
-			System.out.println("5. -------");
+			System.out.println("1. ADD CUSTOMER DETAILS.");
+			System.out.println("2. CHECKIN CUSTOMER.");
+			System.out.println("3. CHECKOUT CUSTOMER.");
+			System.out.println("4. RESERVATION");
+			System.out.println("5. CANCEL A RESERVATION");
 			System.out.println("6. -------");
 			System.out.println("7. -------");
 			System.out.println("8. -------");
@@ -93,10 +93,57 @@ public class Main {
 						m_m.bookRoom(cusName, roomId,checkout);
 						break;
 						
-				case 4: System.out.print("Please enter the room ID to checkout: ");
+				case 3: System.out.print("Please enter the room ID to checkout: ");
 						int id = sc.nextInt();
 						
-						m_m.checkOut(id);
+						m_m.checkOut(id,1);
+						break;
+						
+				case 4 :System.out.println("Please select a category to reserve a room: ");
+						System.out.println("1. SINGLE");
+						System.out.println("2. DOUBLE");
+						System.out.println("3. FAMILY");
+						System.out.println("4. PREMIUM");
+						
+						int res_cat_choice = sc.nextInt();
+						String res_category = categories[res_cat_choice - 1];
+						System.out.println("You have selected " + res_category);
+						System.out.println();
+						System.out.println("CHECKING ALL AVAILABLE ROOMS");
+						System.out.println("*********************************************");
+						m_m.getRoomOnCategory(res_category);
+						
+						System.out.print("Please enter the roomId that you want to book: ");
+						int res_roomId = sc.nextInt();
+						sc.nextLine();
+						System.out.print("Please enter customer Id or full name to continue booking: ");
+						Object res_cusName;
+					    if (sc.hasNextInt()){
+					        res_cusName = sc.nextInt();
+					    } else {
+					        res_cusName = sc.nextLine();
+					    }
+					    
+					    System.out.print("Please enter the checkin date in YYYY MM DD format ");
+					    int resIn_year = sc.nextInt();
+					    int resIn_month = sc.nextInt();
+					    int resIn_day = sc.nextInt();
+					    
+					    System.out.print("Please enter the checkout date in YYYY MM DD format ");
+					    int resOut_year = sc.nextInt();
+					    int resOut_month = sc.nextInt();
+					    int resOut_day = sc.nextInt();
+						
+					    LocalDate res_checkin = LocalDate.of(resIn_year, resIn_month, resIn_day);
+					    LocalDate res_checkout = LocalDate.of(resOut_year, resOut_month, resOut_day);
+						m_m.reserveRoom(res_cusName, res_roomId, res_checkin, res_checkout);
+						break;
+						
+				case 5 :System.out.print("Please enter the room ID to cancel reservation: ");
+						int res_id = sc.nextInt();
+						
+						m_m.checkOut(res_id,2); 
+						break;
 						
 				case 9: Room_Schema r_s = new Room_Schema();
 						System.out.println("ADMIN FUNCTIONS");
@@ -162,8 +209,7 @@ public class Main {
 									
 									String[] newData = {ef_name,el_name,Long.toString(ephone),eaddress,ecity,estate,ezip};
 									u_m.editUser(input, newData);
-									break;
-									
+									break;						
 						}
 						
 			}
