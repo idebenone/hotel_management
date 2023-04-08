@@ -16,50 +16,16 @@ public class Utilities {
 		System.out.println("Data has been saved successfully");
 	}
 	
-	
-	//GET SAVED DATA FROM USER.TXT FILE
-//	public String getData(Object input,String fileName) throws IOException{
-//		BufferedReader br = new BufferedReader(new FileReader(fileName));
-//		String line;
-//		String res = "";
-//		if(input instanceof String){
-//	        while ((line = br.readLine()) != null) {
-//	            String parts[] = line.split(",");
-//	            String fullName = parts[1].trim() + " " + parts[2].trim();
-//	            if (fullName.equals(input)) {
-//	            	res = line;
-//	            }else{
-//	            	res = "";
-//	            }
-//	        } 
-//		}else{
-//	        while ((line = br.readLine()) != null) {
-//	            String parts[] = line.split(",");
-//	            if (parts[0].trim().equalsIgnoreCase(Integer.toString((int) input))) {
-//	            	res = line;
-//	            	System.out.println(res);
-//	            }else{
-//	            	res = "";
-//	            }
-//	        } 
-//		}
-//		br.close();
-//		System.out.println(res);
-//		return res;
-//	}
-	
 	public String getData(Object input, String fileName) throws IOException {
 	    BufferedReader br = new BufferedReader(new FileReader(fileName));
 	    String line;
 	    String res = "";
-	    boolean foundMatch = false;
 	    if (input instanceof String) {
 	        while ((line = br.readLine()) != null) {
 	            String parts[] = line.split(",");
 	            String fullName = parts[1].trim() + " " + parts[2].trim();
 	            if (fullName.equals(input)) {
 	                res = line;
-	                foundMatch = true;
 	                break;
 	            }
 	        }
@@ -68,17 +34,11 @@ public class Utilities {
 	            String parts[] = line.split(",");
 	            if (parts[0].trim().equalsIgnoreCase(Integer.toString((int) input))) {
 	                res = line;
-	                foundMatch = true;
 	                break;
 	            }
 	        }
 	    }
 	    br.close();
-//	    if (!foundMatch) {
-//	        System.out.println("No match found");
-//	    } else {
-//	        System.out.println(res);
-//	    }
 	    return res;
 	}
 	
@@ -152,7 +112,6 @@ public class Utilities {
 	public void deleteData(Object input, String fileName) throws IOException{
 	    BufferedReader br = new BufferedReader(new FileReader(fileName));
 	    BufferedWriter bw = new BufferedWriter(new FileWriter(fileName + ".temp"));
-	    
 	    String line;
 	    boolean found = false;
 
@@ -160,7 +119,8 @@ public class Utilities {
 	    if (input instanceof String) {
 	        while ((line = br.readLine()) != null) {
 	            String parts[] = line.split(",");
-	            String fullName = parts[1] + " " + parts[2];
+	            String fullName = parts[1].trim() + " " + parts[2].trim();
+	            
 	            if (fullName.equals(input))
 	                found = true;
 	            else            	

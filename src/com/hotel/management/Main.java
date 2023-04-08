@@ -1,6 +1,5 @@
 package com.hotel.management;
 
-import java.io.IOException;
 import java.time.*;
 import java.util.Scanner;
 public class Main {
@@ -149,10 +148,9 @@ public class Main {
 						System.out.println("ADMIN FUNCTIONS");
 						System.out.println();
 						System.out.println("1. ADD ROOMS");
-						System.out.println("2. EDIT ROOMS");
-						System.out.println("3. DELETE ROOMS");
-						System.out.println("4. EDIT USERS");
-						System.out.println("5. DELETE USERS");
+						System.out.println("2. DELETE ROOMS");
+						System.out.println("3. EDIT USERS");
+						System.out.println("4. DELETE USERS");
 						int admin_choice = sc.nextInt();
 						switch(admin_choice){
 							case 1: System.out.println("ADDING ROOM DETAILS: ");								
@@ -174,7 +172,14 @@ public class Main {
 									m_m.addRoom(r_s);
 									break;
 									
-							case 4:	System.out.print("Please enter Customer ID or Customer Full Name to edit: ");
+							case 2: System.out.print("Please enter roomID to delete: ");
+									int d_roomId = sc.nextInt();
+									sc.nextLine();
+									
+									m_m.deleteRoom(d_roomId);
+									break;
+									
+							case 3:	System.out.print("Please enter Customer ID or Customer Full Name to edit: ");
 									Object input;
 								    if (sc.hasNextInt()){
 								        input = sc.nextInt();
@@ -209,8 +214,23 @@ public class Main {
 									
 									String[] newData = {ef_name,el_name,Long.toString(ephone),eaddress,ecity,estate,ezip};
 									u_m.editUser(input, newData);
-									break;						
-						}
+									break;
+							
+							case 4: System.out.print("Please enter customer Id or customer name: ");
+									Object cus_Name;
+									String ip = sc.nextLine();
+									
+									if (ip.matches("\\d+")) {
+									    cus_Name = sc.nextInt();
+									    sc.nextLine();
+									} else {
+									    cus_Name = sc.nextLine().trim(); // Call trim() to remove whitespace characters
+									}									   
+								    u_m.deleteUser(cus_Name);
+							
+
+								    break;
+						}			
 						
 			}
 		}while(choice>0);

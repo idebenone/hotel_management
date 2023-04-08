@@ -26,12 +26,12 @@ public class Room_Management {
 		}
 	}
 	
-	public void editRoom(int id){
-		
-	}
-	
 	public void deleteRoom(int id){
-		
+		try {
+			util.deleteData(id, roomFile);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void getRoomOnCategory(String category){

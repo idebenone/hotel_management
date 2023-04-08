@@ -34,7 +34,6 @@ public class User_Management {
 		}
 	}
 	
-	//MOVE TO ADMIN
 	public void deleteUser(Object obj){
 		try {
 			util.deleteData(obj, userFile);
